@@ -32,10 +32,10 @@ def compute_x(nvar, num, n_con, n_rob, P, Ax_eq, bx_eq, Ay_eq, by_eq, Az_eq, bz_
     primal_sol_z = sol_z[0:n_rob*nvar]
 
     #########################
-    print(cp.shape(A_w))
-    print(cp.shape(primal_sol_x))
-    print(cp.shape(aug_term))
+    
     new_lamda_x = new_lamda_x + rho_w_alpha*(cp.dot(A_w.T, cp.dot(A_w, primal_sol_x) - aug_term[0]))
+    new_lamda_y = new_lamda_y + rho_w_alpha*(cp.dot(A_w.T, cp.dot(A_w, primal_sol_y) - aug_term[1]))
+    new_lamda_z = new_lamda_z + rho_w_alpha*(cp.dot(A_w.T, cp.dot(A_w, primal_sol_z) - aug_term[2]))
     #########################
     ##############computing x
 
