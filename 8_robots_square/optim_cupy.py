@@ -18,9 +18,9 @@ def compute_x(nvar, num, n_con, n_rob, P, Ax_eq, bx_eq, Ay_eq, by_eq, Az_eq, bz_
     #print(np.shape(linterm_augment))
 
     lincost_mat = cp.hstack(( -linterm_augment, cp.vstack(( bx_eq, by_eq, bz_eq  ))   ))
-    print(np.shape(lincost_mat[0]))
-    print(np.shape(lincost_mat))
-    print(np.shape(new_lamda_x))
+    #print(np.shape(lincost_mat[0]))
+    print(np.shape(linterm_augment))
+    print(np.shape(cp.vstack((  new_lamda_x, new_lamda_y, new_lamda_z ))))
 
     sol_x = cp.dot(cost_mat_inv_x, lincost_mat[0])
     sol_y = cp.dot(cost_mat_inv_y, lincost_mat[1])
