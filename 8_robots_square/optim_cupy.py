@@ -8,13 +8,14 @@ import cupy as cp
 
 
 
-def compute_x(nvar, num, n_con, n_rob, P, Ax_eq, bx_eq, Ay_eq, by_eq, Az_eq, bz_eq, Ax_eq_obs, bx_eq_obs, Ay_eq_obs, by_eq_obs, Az_eq_obs, bz_eq_obs, a, d_obs_ij, alpha_ij, beta_ij, lamda_x, lamda_y, lamda_z,  rho_w_alpha, cost_mat_inv_x, cost_mat_inv_y, cost_mat_inv_z):
+def compute_x(nvar, num, n_con, n_rob, P, Ax_eq, bx_eq, Ay_eq, by_eq, Az_eq, bz_eq, Ax_eq_obs, bx_eq_obs, Ay_eq_obs, by_eq_obs, Az_eq_obs, bz_eq_obs, a, d_obs_ij, alpha_ij, beta_ij, lamda_x, lamda_y, lamda_z,  rho_w_alpha, cost_mat_inv_x, cost_mat_inv_y, cost_mat_inv_z, new_lamda_x, new_lamda_y, new_lamda_z):
 
     A_w = Ax_eq_obs
 
     aug_term = cp.vstack(( bx_eq_obs+a*cp.ones(num*n_con)*d_obs_ij*cp.cos(alpha_ij)*cp.sin(beta_ij)-lamda_x/rho_w_alpha,   by_eq_obs+a*cp.ones(num*n_con)*d_obs_ij*cp.sin(alpha_ij)*cp.sin(beta_ij)-lamda_y/rho_w_alpha, bz_eq_obs+a*cp.ones(num*n_con)*d_obs_ij*cp.cos(beta_ij)-lamda_z/rho_w_alpha  ))
 
     linterm_augment = -rho_w_alpha*cp.dot(A_w.T, aug_term.T ).T
+    print(np.shape(linterm_augment))
 
     lincost_mat = cp.hstack(( -linterm_augment, cp.vstack(( bx_eq, by_eq, bz_eq  ))   ))
 
