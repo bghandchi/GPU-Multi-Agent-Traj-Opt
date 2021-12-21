@@ -56,7 +56,7 @@ def compute_x(nvar, num, n_con, n_rob, P, Ax_eq, bx_eq, Ay_eq, by_eq, Az_eq, bz_
 
     beta_ij = cp.arctan2( ws_beta, wc_beta )
 
-    return x, y, z, wc_alpha, ws_alpha, alpha_ij, wc_beta, ws_beta, beta_ij
+    return x, y, z, wc_alpha, ws_alpha, alpha_ij, wc_beta, ws_beta, beta_ij, new_lamda_x, new_lamda_y, new_lamda_z
 
 def compute_dobs(n_con, num_horizon, rho_w_alpha, alpha_ij, beta_ij, lamda_x, lamda_y, lamda_z, a, b, wc_alpha, ws_alpha, wc_beta, ws_beta):
 
@@ -77,4 +77,4 @@ def compute_dobs(n_con, num_horizon, rho_w_alpha, alpha_ij, beta_ij, lamda_x, la
     lamda_y = lamda_y+res_y*rho_w_alpha
     lamda_z = lamda_z+res_z*rho_w_alpha
 
-    return d_obs_ij, lamda_x, lamda_y, lamda_z, res_x, res_y, res_z, new_lamda_x, new_lamda_y, new_lamda_z
+    return d_obs_ij, lamda_x, lamda_y, lamda_z, res_x, res_y, res_z
