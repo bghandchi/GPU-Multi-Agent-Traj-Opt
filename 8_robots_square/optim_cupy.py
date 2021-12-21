@@ -26,6 +26,9 @@ def compute_x(nvar, num, n_con, n_rob, P, Ax_eq, bx_eq, Ay_eq, by_eq, Az_eq, bz_
     sol_z = cp.dot(cost_mat_inv_z, lincost_mat[2])
 
     #########################
+    print(np.shape(A_w))
+    print(np.shape(sol_x))
+    print(np.shape(bx_eq))
     new_lamda_x = new_lamda_x + rho_w_alpha*cp.dot(A_w.T, cp.dot(A_w, sol_x) - bx_eq )
     #########################
     ################## from here
