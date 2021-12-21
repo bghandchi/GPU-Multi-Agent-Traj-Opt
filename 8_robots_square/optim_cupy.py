@@ -35,7 +35,7 @@ def compute_x(nvar, num, n_con, n_rob, P, Ax_eq, bx_eq, Ay_eq, by_eq, Az_eq, bz_
     print(cp.shape(A_w))
     print(cp.shape(primal_sol_x))
     print(cp.shape(bx_eq))
-    new_lamda_x = new_lamda_x + rho_w_alpha*(cp.dot(A_w.T, cp.dot(A_w, primal_sol_x) )-cp.dot(A_w.T,  aug_term.T))
+    new_lamda_x = new_lamda_x + rho_w_alpha*(cp.dot(A_w.T, cp.dot(A_w, primal_sol_x) - aug_term.T))
     #########################
     ##############computing x
 
